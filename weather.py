@@ -40,4 +40,15 @@ def sunrise():
     sunset = parsed_json['sun_phase']['sunset']['hour']+':'+parsed_json['sun_phase']['sunset']['minute']
     print("Sunrise is at: " + sunrise + ", sunset is at: " + sunset)
     #print(json.dumps(parsed_json, indent=4, sort_keys=True))
-sunrise()
+
+def alerts():
+    zip = input('For which ZIP code would you like to see the weather? ')
+    r = requests.get('http://api.wunderground.com/api/{}/alerts/q/{}.json'.format(key, zip))
+    parsed_json = r.json()
+    alert = parsed_json['alerts']
+    alert_type = parsed_json['alerts']['message']
+    if alert == []:
+        print("There are no alerts for your area! Probably a good thing...")
+    else:
+        print("Oh no! The Weather Service says "+alert_type)
+    #print(json.dumps(parsed_json, indent=4, sort_keys=True))
