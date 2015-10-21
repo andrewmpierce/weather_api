@@ -27,8 +27,11 @@ class TenDayWeather:
 
     def get(self):
         parsed_json = self.r.json()
-
-
+        #print(json.dumps(parsed_json, indent=4, sort_keys=True))
+        for day in parsed_json['forecast']['txt_forecast']['forecastday']:
+            print("On "+day['title']+ " the forecast is "+day['fcttext'])
+something = TenDayWeather(key, 27713)
+something.get()
 
 class SunRiseWeather:
     def __init__(self, r, zip):
@@ -58,8 +61,14 @@ class AlertsWeather:
             print("Oh no! The Weather Service says "+alert_type)
 
 
-def hurricanes():
-    zip = input('For which ZIP code would you like to see the weather? ')
-    r = requests.get('http://api.wunderground.com/api/{}/currenthurricane/view.format'.format(key, zip))
-    parsed_json = r.json()
-    print(json.dumps(parsed_json, indent=4, sort_keys=True))
+class HurricanesWeather:
+    def __init__(self, r):
+        self.r = requests.get('http://api.wunderground.com/api/{}/currenthurricane/view.json'.format(key))
+
+    def get(self):
+        parsed_json = self.r.json()
+        print("There are currently "+str(len(parsed_json['currenthurricane']))+ " hurricanes: ")
+        for hurricane in parsed_json['currenthurricane']:
+        #print(json.dumps(hurricane, indent=4, sort_keys=True))
+            name = hurricane['stormInfo']['stormName']
+            print(name)
