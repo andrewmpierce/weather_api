@@ -74,3 +74,4 @@ target/
 *.json
 *.dat
 *__pycache__/
+key/*

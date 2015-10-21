@@ -52,3 +52,11 @@ def alerts():
     else:
         print("Oh no! The Weather Service says "+alert_type)
     #print(json.dumps(parsed_json, indent=4, sort_keys=True))
+
+def hurricanes():
+    zip = input('For which ZIP code would you like to see the weather? ')
+    r = requests.get('http://api.wunderground.com/api/{}/currenthurricane/view.format'.format(key, zip))
+    parsed_json = r.json()
+    print(json.dumps(parsed_json, indent=4, sort_keys=True))
+
+hurricanes()
