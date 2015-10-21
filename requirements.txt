@@ -1,0 +1,5 @@
+requests
+requests-mock
+nose
+json
+urllib
