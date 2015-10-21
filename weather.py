@@ -1,9 +1,11 @@
-from key.key import *
+#from key.key import *
 
 import urllib
 import json
 import requests
+import os
 
+key = os.environ['WUNDERGROUND_KEY']
 
 class CurrentWeather:
     def __init__(self, r, zip):

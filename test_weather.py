@@ -1,6 +1,6 @@
 import requests_mock
 import requests
-from weather import *
+from weather import CurrentWeather, TenDayWeather, SunRiseWeather, AlertsWeather, HurricanesWeather
 from key.key import *
 
 
