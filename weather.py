@@ -30,8 +30,7 @@ class TenDayWeather:
         #print(json.dumps(parsed_json, indent=4, sort_keys=True))
         for day in parsed_json['forecast']['txt_forecast']['forecastday']:
             print("On "+day['title']+ " the forecast is "+day['fcttext'])
-something = TenDayWeather(key, 27713)
-something.get()
+
 
 class SunRiseWeather:
     def __init__(self, r, zip):
@@ -72,3 +71,33 @@ class HurricanesWeather:
         #print(json.dumps(hurricane, indent=4, sort_keys=True))
             name = hurricane['stormInfo']['stormName']
             print(name)
+
+
+def get_zip():
+    zip = input("What is your five digit zip code?\n")
+    return zip
+
+def main():
+    option = input("""So what do you want to know?
+    Enter 1 for current conditions;
+    Enter 2 for ten day forecast;
+    Enter 3 for sunrise and sunset times;
+    Enter 4 for all current weather alerts;
+    Enter 5 for all current tracked hurricanes.\n""" )
+    if option == '1':
+        new = CurrentWeather(key, get_zip())
+        new.get()
+    elif option == '2':
+        new = TenDayWeather(key, get_zip())
+        new.get()
+    elif option == '3':
+        new = SunRiseWeather(key, get_zip())
+        new.get()
+    elif option == '4':
+        new = AlertsWeather(key, get_zip())
+        new.get()
+    else:
+        new = HurricanesWeather(key)
+        new.get()
+
+main()
